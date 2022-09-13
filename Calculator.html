@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Simple Calculator</title>
+        <style>
+            .calc-container {
+                display: grid;
+                grid-template-columns: 10% 10% 10% 10%;
+                padding: 10px;
+                align-content: center;
+            }
+            .calc-item {
+                background-color: rgb(81, 145, 139);
+                border: 4px solid lightskyblue;
+                padding: 20px;
+                font-size: 20px;
+                text-align: center;
+            }
+            .disp-cont {
+                display: grid;
+                grid-template-columns: 35% 5%;
+                padding: 10px;
+                align-content: center;
+            }
+            .disp {
+                border: 5px solid white;
+                padding: 10px;
+                font-size: large;
+            }
+            #cls {
+                background-color:rgb(0, 190, 190)
+            }
+        </style>
+        <script>
+            function display(val) {
+                document.getElementById("result").value += val;
+            }
+            function Clear() {
+                document.getElementById("result").value = '';
+            }
+            function calc() {
+                var inp = document.getElementById("result").value;
+                var exp = inp.split(' ');
+                var a = parseInt(exp[0]);
+                var b = parseInt(exp[2]);
+                var ops = exp[1];
+                var calculate = {
+                    '+': function (x, y) { return x + y },
+                    '-': function (x, y) { return x - y },
+                    '*': function (x, y) { return x * y },
+                    '/': function (x, y) { return x / y }
+                }
+                
+                var ans = calculate[ops](a, b)
+                document.getElementById("result").value = ans;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Simple Calculator App</h1>
+        <div class="disp-cont">
+            <input class="disp" type="text" id="result" disabled>
+            <button class="disp" type="text" id="cls" onclick="Clear()">Clear</button>
+        </div>
+        
+        <div class="calc-container">
+            <button class="calc-item" type="text" onclick="display('1')">1</button>
+            <button class="calc-item" type="text" onclick="display('2')">2</button>
+            <button class="calc-item" type="text" onclick="display('3')">3</button>
+            <button class="calc-item" type="text" onclick="display(' / ')">/</button>
+            <button class="calc-item" type="text" onclick="display('4')">4</button>
+            <button class="calc-item" type="text" onclick="display('5')">5</button>
+            <button class="calc-item" type="text" onclick="display('6')">6</button>
+            <button class="calc-item" type="text" onclick="display(' * ')">*</button>
+            <button class="calc-item" type="text" onclick="display('7')">7</button>
+            <button class="calc-item" type="text" onclick="display('8')">8</button>
+            <button class="calc-item" type="text" onclick="display('9')">9</button>
+            <button class="calc-item" type="text" onclick="display(' - ')">-</button>
+            <button class="calc-item" type="text" onclick="display('0')">0</button>
+            <button class="calc-item" type="text" onclick="display('.')">.</button>
+            <button class="calc-item" type="text" onclick="calc()">=</button>
+            <button class="calc-item" type="text" onclick="display(' + ')">+</button>
+        </div>
+    </body>
+</html>
